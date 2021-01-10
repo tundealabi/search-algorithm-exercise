@@ -33,17 +33,20 @@ function binarySearch(arr,value) {
     return -1;
 }
 
-function binarySearchRecursive(arr,value,st,end=arr.length-1) {
+function binarySearchRecursive(arr,value) {
     let sortArr = arr.sort((a,b)=>a-b);
-    let start = st || 0;
+    return bsrUtil(sortArr,value,0,sortArr.length-1);   
+}
+
+function bsrUtil(sortArr,val,start,end){
     if(start <= end) {
         let midPoint = Math.floor((start+end)/2);
-         if(value === sortArr[midPoint]) {
+         if(val === sortArr[midPoint]) {
             return midPoint;
-    }else if(sortArr[midPoint] > value) {
-       return binarySearchRecursive(sortArr,value,start,midPoint-1);
+    }else if(sortArr[midPoint] > val) {
+       return bsrUtil(sortArr,val,start,midPoint-1);
     }else {
-     return binarySearchRecursive(sortArr,value,midPoint+1,end);
+     return bsrUtil(sortArr,val,midPoint+1,end);
     }
 }
     return -1;
